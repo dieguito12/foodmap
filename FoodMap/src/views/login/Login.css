@@ -1,0 +1,111 @@
+#login-h1 {
+  color: #7588AE;
+  font-size: 30px;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.row {
+  margin-bottom: -10px;
+}
+
+.button-text {
+  text-align: center;
+  overflow: auto;
+  margin: auto;
+  white-space: normal;
+}
+
+.login-form {
+  margin: 10px;
+}
+
+#register-link {
+  text-decoration: none;
+  color: #0094FF;
+}
+
+#login-button {
+  background-color: #6498FE;
+}
+
+.base-font-family {
+  font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+input[type="text"] {
+    font-size:24px;
+}
+
+input[type="password"] {
+    font-size:24px;
+}
+
+form {
+  margin: 30px;
+}
+
+.login {
+  width: 60%;
+  margin: auto;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: #F7F7F7;
+  margin-top: 10%;
+}
+
+.group        {
+  position:relative;
+  margin-bottom:45px;
+}
+
+input         {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  border:none;
+  width: 100%;
+  background-color: #F7F7F7;
+  border-bottom:1px solid #757575;
+}
+
+input:focus     { outline:none; }
+
+label          {
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  top:10px;
+  transition:0.2s;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label     {
+  top:-20px;
+  font-size:14px;
+  color:#5264AE;
+}
+
+.bar  { position:relative; display:block; }
+
+.bar:before, .bar:after   {
+  content:'';
+  height:2px;
+  width:0;
+  bottom:1px;
+  position:absolute;
+  background:#5264AE;
+  transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%;
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
