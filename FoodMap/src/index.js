@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import MenuContainer from './MenuContainer';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <MenuContainer />,
   document.getElementById('root')
 );
