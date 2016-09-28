@@ -8,7 +8,7 @@ class RestDetailAddress extends Component {
                     <strong>Direccion</strong>
                 </div>
                 <div className="col-lg-9">
-                 Av. Rómulo Betancourt 1566, Santo Domingo
+                 {this.props.Add}
                  </div>
             </div>
             );

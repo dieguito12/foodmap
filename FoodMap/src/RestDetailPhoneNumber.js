@@ -8,7 +8,7 @@ class RestDetailPhoneNumber extends Component {
                     <strong>Telefono(s)</strong>
                 </div>
                 <div className="col-lg-9">
-                (809) 472-2011
+                {this.props.Phone}
                 </div>
             </div>
             );

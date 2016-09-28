@@ -8,7 +8,7 @@ class RestDetailRating extends Component {
                     <strong>Rating</strong>
                 </div>
                 <div className="col-lg-9">
-                Testing
+                {this.props.rat}
                 </div>
             </div>
             );

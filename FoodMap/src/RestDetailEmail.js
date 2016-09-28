@@ -8,7 +8,7 @@ class RestDetailEmail extends Component {
                     <strong>E-mail</strong>
                 </div>
                 <div className="col-lg-9">
-                restauranteyao@gmail.com
+                {this.props.Email}
                 </div>
             </div>
             );
