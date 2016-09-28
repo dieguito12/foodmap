@@ -8,7 +8,7 @@ var styles = {
   borderColor: '#808080',
 };
 
-var loginEndpoint = 'hola';
+var loginEndpoint = 'http://34f711b9.ngrok.io/login';
 
 class LoginContainer extends Component {
   render() {

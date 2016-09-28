@@ -4,6 +4,7 @@ import LoginInput from '../components/LoginInput';
 import RegisterButton from '../components/RegisterButton';
 import Auth from '../../../auth/Auth';
 import User from '../../../auth/User';
+import $ from 'jquery';
 
 import '../Login.css';
 
@@ -30,30 +31,26 @@ class LoginFormContainer extends Component {
       username: this.state.username,
       password: this.state.password
     };
-
     $.ajax({
       type: "POST",
       url: this.props.endpointUrl,
       data: postData,
       success: this.handleSubmitSuccess,
       error: this.handleSubmitFailure,
-      dataType: 'json'
+      dataType: 'json',
     });
     e.preventDefault();
   }
 
   handleSubmitSuccess = (response) => {
     var user = new User(this.state.username);
+    user.setToken(response['token']);
     console.log(response);
     Auth.setUser(user);
   }
 
   handleSubmitFailure = (error) => {
 
-  }
-
-  handleOnClick = (e) => {
-    document.getElementById('login').submit();
   }
 
   render() {
