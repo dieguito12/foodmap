@@ -5,9 +5,12 @@ import  RestDetail from '../components/RestDetail';
 import Auth from '../../../auth/Auth';
 import $ from 'jquery';
 
+Tabs.setUseDefaultStyles(false);
+
 var BarName = {
-    color: 'red',
-    backgroundColor: '#EAF0ED',
+    color: '#7588AE',
+    backgroundColor: '#F7F7F7',
+    textDecoration: 'none',
 };
 
 var DataStyle = {
@@ -52,12 +55,12 @@ class RestContainer extends Component{
     }
     render() {
     return (
-    <div className="RestContainer">
-      <Tabs>
-        <TabList>
-          <Tab style={BarName}>Detalles</Tab>
-          <Tab style={BarName}>Menu</Tab>
-          <Tab style={BarName}>Galeria</Tab>
+    <div className="row">
+      <Tabs className="col s12">
+        <TabList className="tabs">
+          <Tab className="tab col s3"><a style={BarName} href="#test1">Detalles</a></Tab>
+          <Tab className="tab col s3"><a style={BarName} href="#test2">Menu</a></Tab>
+          <Tab className="tab col s3"><a style={BarName} href="#test3">Galeria</a></Tab>
         </TabList>
 
         <TabPanel style={DataStyle}>
