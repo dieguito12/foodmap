@@ -3,11 +3,11 @@ var User = function (username) {
 }
 
 User.prototype.setToken = function (token) {
-    this.token = token;
+    this.auth_token = token;
 }
 
 User.prototype.getToken = function () {
-    return this.token;
+    return this.auth_token;
 }
 
 User.prototype.getUsername = function () {

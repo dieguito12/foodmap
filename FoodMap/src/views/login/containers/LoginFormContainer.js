@@ -44,13 +44,15 @@ class LoginFormContainer extends Component {
 
   handleSubmitSuccess = (response) => {
     var user = new User(this.state.username);
-    user.setToken(response['token']);
     console.log(response);
+    user.setToken(response['auth-token']);
     Auth.setUser(user);
+    location.reload();
   }
 
   handleSubmitFailure = (error) => {
-
+    alert("Error logging in: " + error['statusText']);
+    location.reload();
   }
 
   render() {

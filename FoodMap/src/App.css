@@ -27,3 +27,8 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#header-bar {
+  text-decoration: none;
+  background-color: #6498FE;
+}

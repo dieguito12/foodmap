@@ -8,7 +8,7 @@ class AppLayout extends Component {
             <MenuContainer />
             <RestTagContainer />
             <GoogleMapContainer />
-            );
+        );
     }
 }
 

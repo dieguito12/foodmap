@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import LoginViewContainer from './views/login/containers/LoginViewContainer';
 import Auth from './auth/Auth';
+import RestContainer from './views/restaurants/containers/RestContainer';
+import HeaderBar from './views/layout/components/HeaderBar';
 
 class App extends Component {
   render() {
@@ -13,7 +15,13 @@ class App extends Component {
         </div>
       );
     } else {
-      alert('User Logged In');
+      let user = Auth.user();
+      return (
+        <div>
+          <HeaderBar username={user['username']} />
+          <RestContainer />
+        </div>
+      );
     }
   }
 }
