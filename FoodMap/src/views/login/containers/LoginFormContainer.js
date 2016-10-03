@@ -12,11 +12,21 @@ var buttonStyle = {
   textAlign: 'right'
 };
 
+var styles = {
+  border: '1px',
+  borderStyle: 'solid',
+  borderColor: '#808080',
+};
+
 class LoginFormContainer extends Component {
 
   state = {
     username: '',
-    password: ''
+    password: '',
+    passwordConfirmation: '',
+    animatedInput: '',
+    animatedPasswordConfirmationInput: 'password_confirmation_hidden',
+    'disabled': ''
   }
 
   handleOnInputChange = (fieldName, value) => {
@@ -44,7 +54,6 @@ class LoginFormContainer extends Component {
 
   handleSubmitSuccess = (response) => {
     var user = new User(this.state.username);
-    console.log(response);
     user.setToken(response['auth-token']);
     Auth.setUser(user);
     location.reload();
@@ -52,33 +61,64 @@ class LoginFormContainer extends Component {
 
   handleSubmitFailure = (error) => {
     alert("Error logging in: " + error['statusText']);
-    location.reload();
+  }
+
+  handleOnRegisterLinkClicked = () => {
+    this.setState({
+      animatedInput: 'moving_input',
+      disabled: 'enabled',
+    });
+    setTimeout( this.handleTimeout, 1000 );
+    this.props.onRegisterLinkClicked();
+  }
+
+  handleTimeout = () => {
+    this.setState({animatedPasswordConfirmationInput:'password_confirmation'})
   }
 
   render() {
     return (
-      <div className="login-form">
-        <form id='login' onSubmit={this.handleOnSubmit}>
-          <div className="row">
-            <LoginInput
-              name="Username"
-              onChange={this.handleOnInputChange}/>
+      <div className="jumbotron login">
+        <h1 id="login-h1" className='base-font-family'>
+          {this.props.title}
+        </h1>
+        <div style={styles}>
+          <div className="login-form">
+            <form id='login' onSubmit={this.handleOnSubmit}>
+              <div className="row">
+                <LoginInput
+                  name="Username"
+                  onChange={this.handleOnInputChange}/>
+              </div>
+              <div className="row">
+                <LoginInput
+                  id={this.state.animatedInput}
+                  name="Password"
+                  onChange={this.handleOnInputChange}
+                  type="password"/>
+              </div>
+              <div className="row" >
+                <LoginInput
+                  id={this.state.animatedPasswordConfirmationInput}
+                  name="Password Confirmation"
+                  disabled={!this.state.disabled}
+                  onChange={this.handleOnInputChange}
+                  type="password"/>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <RegisterButton
+                    onClick={this.handleOnRegisterLinkClicked}
+                    class={this.state.animatedInput}/>
+                </div>
+                <div className="col-lg-6" style={buttonStyle}>
+                  <LoginButton
+                    class={this.state.animatedInput}/>
+                </div>
+              </div>
+            </form>
           </div>
-          <div className="row">
-            <LoginInput
-              name="Password"
-              onChange={this.handleOnInputChange}
-              type="password"/>
-          </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <RegisterButton />
-            </div>
-            <div className="col-lg-6" style={buttonStyle}>
-              <LoginButton />
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

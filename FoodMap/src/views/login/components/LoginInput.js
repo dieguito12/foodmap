@@ -26,8 +26,9 @@ class LoginInput extends Component {
 
   render() {
     return (
-      <div className="group col-md-12">
+      <div className="group col-md-12" id={this.props.id}>
         <input
+          disabled={this.props.disabled}
           onChange={this.handleOnChange}
           onBlur={this.handleOnBlur}
           type={this.props.type}

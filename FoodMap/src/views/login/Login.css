@@ -51,7 +51,6 @@ form {
   margin: auto;
   top: 0; left: 0; bottom: 0; right: 0;
   background: #F7F7F7;
-  margin-top: 10%;
 }
 
 .group        {
@@ -79,6 +78,23 @@ label          {
   pointer-events:none;
   top:10px;
   transition:0.2s;
+
+}
+
+#moving_input {
+  margin-top: 0px;
+  -webkit-animation-name: register_animationv; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-iteration-count: 1;
+}
+
+.moving_input {
+  margin-top: 0px;
+  -webkit-animation-name: register_animation; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-iteration-count: 1;
 }
 
 /* active state */
@@ -86,6 +102,34 @@ input:focus ~ label, input:valid ~ label     {
   top:-20px;
   font-size:14px;
   color:#5264AE;
+}
+
+#password_confirmation_hidden {
+  display: none;
+}
+
+#password_confirmation {
+  opacity: 0;
+  -webkit-animation: fadein 0.5s;
+  opacity: 1;
+}
+
+/* The animation code */
+@-webkit-keyframes register_animation {
+    from {margin-top: 0px;}
+    to {margin-top: 50px;}
+}
+
+/* The animation code */
+@-webkit-keyframes register_animationv {
+    from {margin-bottom: 45px;}
+    to {margin-bottom: 110px;}
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { display:none; opacity: 0; }
+    to   { opacity: 1; }
 }
 
 .bar  { position:relative; display:block; }

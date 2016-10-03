@@ -3,15 +3,15 @@ import '../Login.css';
 
 class RegisterButton extends Component {
 
-  handleOnClick = (e) => {
-    alert('TODO');
+  state = {
+    defaultClass: 'waves-effect waves-teal btn-flat'
   }
 
   render() {
     return (
       <a id="register-link"
-        onClick={this.handleOnClick}
-        className="mdl-button mdl-js-button mdl-button--primary">Registrarse</a>
+        onClick={this.props.onClick}
+        className={this.state.defaultClass + ' ' + ' ' + this.props.class}>Registrarse</a>
     );
   }
 }

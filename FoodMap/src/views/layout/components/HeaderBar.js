@@ -31,7 +31,6 @@ class HeaderBar extends Component {
                             <li>
                                 <a
                                     className="dropdown-button"
-                                    href="#!"
                                     data-activates="dropdown1">
                                     Bienvenido: {this.props.username}
                                     <i className="material-icons left">perm_identity</i>

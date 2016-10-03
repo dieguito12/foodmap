@@ -29,13 +29,12 @@ class RestContainer extends Component{
     }
 
     componentWillMount() {
-        let user = Auth.user();
+        var user = Auth.loggedUser();
         if (user != null) {
             $.ajaxSetup({
                 headers: { 'token': user['auth_token'] }
             });
         }
-        console.log(Auth.user());
         $.ajax({
             type: 'GET',
             url: "http://159.203.191.142:8080/restaurantDetail/1",
@@ -45,8 +44,7 @@ class RestContainer extends Component{
         });
     }
     fetchData = (result) =>{
-                this.setState(result["0"]);
-                console.log(this.state);
+        this.setState(result["0"]);
     }
     handleError = (error) => {
         if (error['status'] === 403) {

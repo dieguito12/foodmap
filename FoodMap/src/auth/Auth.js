@@ -1,6 +1,6 @@
 var Auth = function () {};
 
-Auth.user = function () {
+Auth.loggedUser = function () {
     var user = localStorage.getItem('currentUser');
     user = JSON.parse(user);
     return user;
