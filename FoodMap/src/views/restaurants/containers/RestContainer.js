@@ -11,11 +11,16 @@ var BarName = {
     color: '#7588AE',
     backgroundColor: '#F7F7F7',
     textDecoration: 'none',
+
 };
 
 var DataStyle = {
     fontFamily: 'GillSans, Calibri, Trebuchet, sans-serif',
-    padding: '30px',
+    marginTop: '10%',
+    marginLeft: '60%',
+    marginBottom: 'auto',
+    border: '1px solid',
+    width: '100%'
 };
 
 class RestContainer extends Component{
@@ -56,11 +61,12 @@ class RestContainer extends Component{
     render() {
     return (
     <div className="row">
-      <Tabs className="col s12">
-        <TabList className="tabs">
+      <Tabs className="col s6">
+        <TabList className="tabs" style={{marginLeft: '60%',marginTop: '35%'}}>
           <Tab className="tab col s3"><a style={BarName} href="#test1">Detalles</a></Tab>
           <Tab className="tab col s3"><a style={BarName} href="#test2">Menu</a></Tab>
           <Tab className="tab col s3"><a style={BarName} href="#test3">Galeria</a></Tab>
+          <div className="indicator"></div>
         </TabList>
 
         <TabPanel style={DataStyle}>
