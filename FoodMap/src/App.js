@@ -5,6 +5,7 @@ import './App.css';
 import LoginFormContainer from './views/login/containers/LoginFormContainer';
 import Auth from './auth/Auth';
 import RestContainer from './views/restaurants/containers/RestContainer';
+import SearchContainer from './views/Seeker/containers/SearchContainer';
 import HeaderBar from './views/layout/components/HeaderBar';
 
 var loginEndpoint = 'http://159.203.191.142:8080/login';
@@ -35,6 +36,7 @@ class App extends Component {
         <div>
           <HeaderBar username={user['username']}/>
           <RestContainer />
+          <SearchContainer />
         </div>
       );
     }
