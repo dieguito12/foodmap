@@ -47,7 +47,7 @@ form {
 }
 
 .login {
-  width: 60%;
+  width: 80%;
   margin: auto;
   top: 0; left: 0; bottom: 0; right: 0;
   background: #F7F7F7;
@@ -72,7 +72,7 @@ input:focus     { outline:none; }
 
 label          {
   color:#999;
-  font-size:18px;
+  font-size:14px;
   font-weight:normal;
   position:absolute;
   pointer-events:none;
@@ -89,12 +89,20 @@ label          {
   -webkit-animation-iteration-count: 1;
 }
 
-.moving_input {
-  margin-top: 0px;
+.moving_input_login {
   -webkit-animation-name: register_animation; /* Chrome, Safari, Opera */
   -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: ease-in;
-  -webkit-animation-iteration-count: 1;
+  animation-fill-mode:forwards;
+}
+
+.moving_input_register {
+  -webkit-animation-name: register_animationv; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 1s;
+  animation-fill-mode:forwards;
+}
+
+.moving_input_static {
+
 }
 
 /* active state */
@@ -108,7 +116,13 @@ input:focus ~ label, input:valid ~ label     {
   display: none;
 }
 
-#password_confirmation {
+#password_confirmation_fadeout {
+  opacity: 1;
+  -webkit-animation: fadeout 1s;
+  opacity: 0;
+}
+
+#password_confirmation_fadein {
   opacity: 0;
   -webkit-animation: fadein 0.5s;
   opacity: 1;
@@ -117,19 +131,25 @@ input:focus ~ label, input:valid ~ label     {
 /* The animation code */
 @-webkit-keyframes register_animation {
     from {margin-top: 0px;}
-    to {margin-top: 50px;}
+    to {margin-top: 116px;}
 }
 
 /* The animation code */
 @-webkit-keyframes register_animationv {
-    from {margin-bottom: 45px;}
-    to {margin-bottom: 110px;}
+    from {margin-top: 116px;}
+    to {margin-top: 0px;}
 }
 
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes fadein {
-    from { display:none; opacity: 0; }
+    from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
 }
 
 .bar  { position:relative; display:block; }
