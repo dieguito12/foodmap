@@ -1,7 +1,7 @@
 var Auth = function () {};
 
 Auth.loggedUser = function () {
-    var user = localStorage.getItem('currentUser');
+    var user = sessionStorage.getItem('currentUser');
     user = JSON.parse(user);
     return user;
 };
@@ -12,7 +12,7 @@ Auth.setUser = function (user) {
 };
 
 Auth.unsetUser = function () {
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
 };
 
 module.exports = Auth;
