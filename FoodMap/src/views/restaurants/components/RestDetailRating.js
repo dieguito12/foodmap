@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import StarRating from 'react-star-rating';
 class RestDetailRating extends Component {
     render () {
         return (
@@ -8,7 +8,7 @@ class RestDetailRating extends Component {
                     <strong>Rating</strong>
                 </div>
                 <div className="col-lg-9">
-                {this.props.rat}
+                <StarRating name="react-star-rating" size={20} rating={this.props.rat} editing={false}/>
                 </div>
             </div>
             );

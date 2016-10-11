@@ -17,9 +17,7 @@ var BarName = {
 var DataStyle = {
     fontFamily: 'GillSans, Calibri, Trebuchet, sans-serif',
     marginTop: '10%',
-    marginLeft: '60%',
     marginBottom: 'auto',
-    border: '1px solid',
     width: '100%'
 };
 
@@ -58,9 +56,9 @@ class RestContainer extends Component{
     }
     render() {
     return (
-    <div className="row">
+    <div>
       <Tabs className="col s6">
-        <TabList className="tabs" style={{marginLeft: '60%',marginTop: '35%'}}>
+        <TabList className="tabs" style={{marginTop: '35%'}}>
           <Tab className="tab col s3"><a style={BarName} href="#test1">Detalles</a></Tab>
           <Tab className="tab col s3"><a style={BarName} href="#test2">Menu</a></Tab>
           <Tab className="tab col s3"><a style={BarName} href="#test3">Galeria</a></Tab>

@@ -4,22 +4,18 @@ import './SearchContainer.css';
 class SearchContainer extends Component {
     render() {
         return(
-        <div className="searchbar">
-            <form class="navbar-form" role="search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" />
-                        <span class="input-group-btn">
-                            <button type="reset" class="btn btn-default">
-                                <span class="glyphicon glyphicon-remove">
-                                </span>
-                            </button>
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search">
-                                </span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
+        <div id="searchbar" className="col-lg-4">
+            <nav>
+                <div id="searchBarM"className="nav-wrapper">
+                    <form>
+                        <div className="input-field">
+                            <input id="search" type="search" required />
+                            <label for="search"><i className="material-icons">search</i></label>
+                            <i className="material-icons">close</i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
         </div>);
     }
 }
