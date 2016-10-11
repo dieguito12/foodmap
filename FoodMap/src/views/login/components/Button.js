@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../Login.css';
 
-class LoginButton extends Component {
+class Button extends Component {
 
   state = {
     defaultClass: 'btn waves-effect waves-light'
@@ -11,13 +11,13 @@ class LoginButton extends Component {
     return (
       <button
         id="login-button"
-        className={this.state.defaultClass + ' ' + ' ' + this.props.class}
+        className={this.state.defaultClass + ' ' + this.props.class}
         type="submit"
-        name="action">Iniciar Sesión
+        name="action">{this.props.name}
         <i className="material-icons right">send</i>
       </button>
     );
   }
 }
 
-export default LoginButton;
+export default Button;

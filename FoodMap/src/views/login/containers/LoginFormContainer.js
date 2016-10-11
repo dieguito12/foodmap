@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
-import LoginButton from '../components/LoginButton';
+import Button from '../components/Button';
 import LoginInput from '../components/LoginInput';
-import RegisterButton from '../components/RegisterButton';
+import FlatButton from '../components/FlatButton';
 import Auth from '../../../auth/Auth';
 import User from '../../../auth/User';
 import $ from 'jquery';
 
 import '../Login.css';
 
+
+var baseEndpoint = 'http://159.203.191.142:8080/';
+
 var buttonStyle = {
-  textAlign: 'right'
+  textAlign: 'center'
 };
 
 var styles = {
@@ -24,9 +27,12 @@ class LoginFormContainer extends Component {
     username: '',
     password: '',
     passwordConfirmation: '',
-    animatedInput: '',
+    animatedInput: 'row',
     animatedPasswordConfirmationInput: 'password_confirmation_hidden',
-    'disabled': ''
+    disabled: '',
+    currentButtonTitle: 'Iniciar Sesión',
+    currentFlatButtonTitle: 'Registrarse',
+    currentAction: 'login'
   }
 
   handleOnInputChange = (fieldName, value) => {
@@ -43,7 +49,7 @@ class LoginFormContainer extends Component {
     };
     $.ajax({
       type: "POST",
-      url: this.props.endpointUrl,
+      url: baseEndpoint + this.state.currentAction,
       data: postData,
       success: this.handleSubmitSuccess,
       error: this.handleSubmitFailure,
@@ -54,7 +60,7 @@ class LoginFormContainer extends Component {
 
   handleSubmitSuccess = (response) => {
     var user = new User(this.state.username);
-    user.setToken(response['auth-token']);
+    user.setToken(response['token']);
     Auth.setUser(user);
     location.reload();
   }
@@ -63,24 +69,47 @@ class LoginFormContainer extends Component {
     alert("Error logging in: " + error['statusText']);
   }
 
-  handleOnRegisterLinkClicked = () => {
-    this.setState({
-      animatedInput: 'moving_input',
-      disabled: 'enabled',
-    });
-    setTimeout( this.handleTimeout, 1000 );
-    this.props.onRegisterLinkClicked();
+  handleOnFlatLinkClicked = () => {
+    if (this.state.currentAction === 'login') {
+      this.setState({
+        animatedInput: 'row moving_input_login',
+        disabled: 'enabled',
+        currentAction: 'register'
+      });
+      setTimeout( this.handleTimeout, 1050 );
+    } else {
+      this.setState({
+        animatedPasswordConfirmationInput:'password_confirmation_fadeout',
+        disabled: '',
+        currentAction: 'login'
+      });
+      setTimeout( this.handleTimeout, 550 );
+    }
   }
 
   handleTimeout = () => {
-    this.setState({animatedPasswordConfirmationInput:'password_confirmation'})
+    if (this.state.currentAction === "login") {
+      this.setState({
+        currentButtonTitle: 'Iniciar Sesión',
+        currentFlatButtonTitle: 'Registrarse',
+        animatedInput: 'row moving_input_register',
+        animatedPasswordConfirmationInput: 'password_confirmation_hidden'
+      })
+    } else {
+      this.setState({
+        currentButtonTitle: 'Crear Cuenta',
+        currentFlatButtonTitle: 'Inicio de Sesión',
+        animatedInput: 'row',
+        animatedPasswordConfirmationInput:'password_confirmation_fadein'
+      })
+    }
   }
 
   render() {
     return (
       <div className="jumbotron login">
         <h1 id="login-h1" className='base-font-family'>
-          {this.props.title}
+          {this.state.currentButtonTitle}
         </h1>
         <div style={styles}>
           <div className="login-form">
@@ -92,7 +121,6 @@ class LoginFormContainer extends Component {
               </div>
               <div className="row">
                 <LoginInput
-                  id={this.state.animatedInput}
                   name="Password"
                   onChange={this.handleOnInputChange}
                   type="password"/>
@@ -105,15 +133,15 @@ class LoginFormContainer extends Component {
                   onChange={this.handleOnInputChange}
                   type="password"/>
               </div>
-              <div className="row">
-                <div className="col-lg-6">
-                  <RegisterButton
-                    onClick={this.handleOnRegisterLinkClicked}
-                    class={this.state.animatedInput}/>
+              <div className={this.state.animatedInput}>
+                <div className="col-lg-6" style={buttonStyle}>
+                  <FlatButton
+                    name={this.state.currentFlatButtonTitle}
+                    onClick={this.handleOnFlatLinkClicked}/>
                 </div>
                 <div className="col-lg-6" style={buttonStyle}>
-                  <LoginButton
-                    class={this.state.animatedInput}/>
+                  <Button
+                    name={this.state.currentButtonTitle}/>
                 </div>
               </div>
             </form>

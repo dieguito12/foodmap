@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../Login.css';
 
-class RegisterButton extends Component {
+class FlatButton extends Component {
 
   state = {
     defaultClass: 'waves-effect waves-teal btn-flat'
@@ -11,9 +11,9 @@ class RegisterButton extends Component {
     return (
       <a id="register-link"
         onClick={this.props.onClick}
-        className={this.state.defaultClass + ' ' + ' ' + this.props.class}>Registrarse</a>
+        className={this.state.defaultClass + ' ' + this.props.class}>{this.props.name}</a>
     );
   }
 }
 
-export default RegisterButton;
+export default FlatButton;
