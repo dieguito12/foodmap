@@ -49,7 +49,7 @@ class RestContainer extends Component{
         });
     }
     fetchData = (result) =>{
-        this.setState(result["0"]);
+        this.setState(result);
     }
     handleError = (error) => {
         if (error['status'] === 403) {
