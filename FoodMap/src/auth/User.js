@@ -15,7 +15,7 @@ User.prototype.getUsername = function () {
 }
 
 User.prototype.storeUser = function() {
-    localStorage.setItem('currentUser', JSON.stringify(this))
+    localStorage.setItem('currentUser-'+this.username, JSON.stringify(this))
 };
 
 module.exports = User;
