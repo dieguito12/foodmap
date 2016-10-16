@@ -9,7 +9,7 @@ import $ from 'jquery';
 import '../Login.css';
 
 
-var baseEndpoint = 'http://localhost:8080/';
+var baseEndpoint = 'http://159.203.191.142:8080/';
 
 var buttonStyle = {
   textAlign: 'center'
