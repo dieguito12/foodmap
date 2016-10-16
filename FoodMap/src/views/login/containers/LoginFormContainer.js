@@ -9,7 +9,7 @@ import $ from 'jquery';
 import '../Login.css';
 
 
-var baseEndpoint = 'http://159.203.191.142:8080/';
+var baseEndpoint = 'http://localhost:8080/';
 
 var buttonStyle = {
   textAlign: 'center'
@@ -38,6 +38,9 @@ class LoginFormContainer extends Component {
   handleOnInputChange = (fieldName, value) => {
     let newState = {};
     fieldName = fieldName.toLowerCase();
+    if (fieldName === 'password confirmation') {
+      fieldName = 'passwordConfirmation';
+    }
     newState[fieldName] = value;
     this.setState(newState);
   }
@@ -47,14 +50,20 @@ class LoginFormContainer extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    $.ajax({
-      type: "POST",
-      url: baseEndpoint + this.state.currentAction,
-      data: postData,
-      success: this.handleSubmitSuccess,
-      error: this.handleSubmitFailure,
-      dataType: 'json',
-    });
+    if (this.state.currentAction == 'register' && this.state.password !== this.state.passwordConfirmation) {
+      console.log(this.state.passwordConfirmation);
+      alert('Password and password confirmation must be the same.');
+    }
+    else {
+      $.ajax({
+        type: "POST",
+        url: baseEndpoint + this.state.currentAction,
+        data: postData,
+        success: this.handleSubmitSuccess,
+        error: this.handleSubmitFailure,
+        dataType: 'json',
+      });
+    }
     e.preventDefault();
   }
 
@@ -66,7 +75,10 @@ class LoginFormContainer extends Component {
   }
 
   handleSubmitFailure = (error) => {
-    alert("Error logging in: " + error['statusText']);
+    var responseText = error['responseText'];
+    responseText = JSON.parse(responseText);
+    alert(responseText['error']['message']);
+    location.reload();
   }
 
   handleOnFlatLinkClicked = () => {
