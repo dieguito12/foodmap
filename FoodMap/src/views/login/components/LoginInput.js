@@ -35,7 +35,7 @@ class LoginInput extends Component {
           required
           className={this.state.inputClass}></input>
         <span className="highlight"></span>
-        <label>{this.props.name}</label>
+        <label id="label">{this.props.name}</label>
       </div>
     );
   }

@@ -7,7 +7,7 @@ class LayoutContainer extends Component {
     render () {
         return(
                 <div className="row">
-                    <SearchContainer/>
+                    <SearchContainer />
                     <RestContainer className="col-lg-8"/>
                 </div>
         );
