@@ -16,7 +16,7 @@ class SearchRow extends Component {
                     <img id="imageRest" src="https://pbs.twimg.com/profile_images/501458165867638784/h795n4ks.jpeg" />
                 </div>
             </div>
-            );
+        );
     }
 }
 
