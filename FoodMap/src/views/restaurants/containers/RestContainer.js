@@ -57,7 +57,7 @@ class RestContainer extends Component{
     render() {
     return (
     <div>
-      <Tabs className="col s6">
+      <Tabs className="col-lg-8">
         <TabList className="tabs" style={{marginTop: '35%'}}>
           <Tab className="tab col s3"><a style={BarName} href="#test1">Detalles</a></Tab>
           <Tab className="tab col s3"><a style={BarName} href="#test2">Menu</a></Tab>

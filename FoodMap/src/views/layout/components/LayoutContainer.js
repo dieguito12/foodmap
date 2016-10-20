@@ -8,7 +8,7 @@ class LayoutContainer extends Component {
         return(
                 <div className="row">
                     <SearchContainer />
-                    <RestContainer className="col-lg-8"/>
+                    <RestContainer />
                 </div>
         );
     }
