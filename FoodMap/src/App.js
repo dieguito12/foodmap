@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginFormContainer from './views/login/containers/LoginFormContainer';
 import Auth from './auth/Auth';
-import RestContainer from './views/restaurants/containers/RestContainer';
 import HeaderBar from './views/layout/components/HeaderBar';
+import LayoutContainer from './views/layout/components/LayoutContainer';
 
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
       return (
         <div>
           <HeaderBar username={user['username']}/>
-          <RestContainer />
+          <LayoutContainer />
         </div>
       );
     }

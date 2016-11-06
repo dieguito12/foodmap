@@ -8,8 +8,14 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "react": "^15.3.2",
+    "react-addons-shallow-compare": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-tabs": "^0.8.0"
+    "react-jrate": "^0.1.2",
+    "react-rater": "^0.3.4",
+    "react-rating": "^0.5.0",
+    "react-star-rating": "^1.4.2",
+    "react-tabs": "^0.8.0",
+    "react-virtualized": "^8.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
