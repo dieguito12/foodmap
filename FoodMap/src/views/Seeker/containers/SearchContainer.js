@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import './SearchContainer.css';
 import SearchRow from  '../components/SearchRow';
 import Auth from '../../../auth/Auth';
+import { WithContext as ReactTags } from 'react-tag-input';
 import $ from 'jquery';
 
 var formStyle = {
     marginTop: '-0.3px'
 }
-
+var noDecoration = {
+    textDecoration: 'none'
+}
 var arrayData = {}
+
+var chipsIds = []
+
+var chip;
 
 var baseEndpoint = 'http://159.203.191.142:8080/';
 
@@ -16,7 +23,7 @@ class SearchContainer extends Component {
 
     state = {
         categories: null,
-        restaurants: null
+        restaurants: null,
     }
 
     componentWillMount() {
@@ -33,7 +40,7 @@ class SearchContainer extends Component {
             success: this.fetchData,
             error: this.handleError
         });
-        var Action = 'restaurants/0/10';
+        var Action = 'restaurants/0/15';
         var user = Auth.loggedUser();
         if (user != null) {
             $.ajaxSetup({
@@ -61,10 +68,19 @@ class SearchContainer extends Component {
         }
     }
     handleOnSubmit = (e) => {
-        var Action = 'restaurants/0/2';
+
+        var Action = 'restaurants/0/15';
+        console.log(chipsIds.length);
+        if (chipsIds.length != 0){
+            Action = 'restByType/'+chipsIds.join('-')+'/0/15';
+        }
         var postData = {
             searchString: document.getElementById("search").value
         };
+        console.log(postData);
+        if (postData['searchString'] != '') {
+            Action = 'searchRestaurant/'+postData['searchString']+'/0/15'
+        }
         var user = Auth.loggedUser();
         if (user != null) {
             $.ajaxSetup({
@@ -82,29 +98,44 @@ class SearchContainer extends Component {
         e.preventDefault();
     }
 
+    handleOnCategoryClick = (e) => {
+        sessionStorage.setItem("chips", JSON.stringify(chip));
+        e.preventDefault();
+    }
+
     handleSubmitSuccess = (response) => {
+        if (response['rows']) {
+            response = response['rows'];
+        }
         var newState = {
             restaurants: response
         };
         this.setState(newState);
+        chipsIds = [];
     }
 
     handleSubmitFailure = (error) => {
         alert("Error logging in: " + error['statusText']);
     }
+
     render() {
         var rowArray = $.map(this.state.categories, function(value, index){
-           return [value.category];
+           return [value];
         });
         var categoryRest = rowArray.map(function(searchs) {
-        return (
-            <li key={searchs.toString()}>{searchs}</li>
+            function handleOnCategoryClick(e) {
+                chip = {tag: e.target.textContent, id: e.target.getAttribute('id')};
+                chipsIds.push(chip['id']);
+            }
+            return (
+                <li key={searchs['id']}><a onClick={handleOnCategoryClick} className="categories" id={searchs['id']} style={noDecoration}>{searchs['category']}</a></li>
             );
         });
         return(
             <div className="col-lg-4">
-                <ul id="dropdown134" className="dropdown-content">
-                {categoryRest}
+                <ul id="dropdown134" onClick={this.handleOnCategoryClick} className="dropdown-content">
+                    <li className="divider"></li>
+                    {categoryRest}
                 </ul>
                 <nav id="search-bar" className="row">
                     <div id="category-label" className="col-xs-2">
@@ -118,11 +149,14 @@ class SearchContainer extends Component {
                         <form style={formStyle} onSubmit={this.handleOnSubmit}>
                             <div className="input-field">
                                 <input id="search" type="search"/>
-                                <label><i className="material-icons">search</i></label>
+                                <label><div><i className="material-icons">search</i></div></label>
                                 <i className="material-icons">close</i>
                             </div>
                         </form>
                     </div>
+                </nav>
+                <nav id="search-bar" className="row">
+                    <div ref="chips" className="chips chips-initial" style={{height: "70px"}}></div>
                 </nav>
                 <div className="row">
                     <SearchRow search={this.state.restaurants} onClick={this.props.onRestaurantClick} />
