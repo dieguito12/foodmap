@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './SearchContainer.css';
 import SearchRow from  '../components/SearchRow';
+import FilterBy from '../components/FilterBy';
 import Auth from '../../../auth/Auth';
 import $ from 'jquery';
 
@@ -124,6 +125,9 @@ class SearchContainer extends Component {
                         </form>
                     </div>
                 </nav>
+                <div className="row">
+                    <FilterBy />
+                </div>
                 <div className="row">
                     <SearchRow search={this.state.restaurants} onClick={this.props.onRestaurantClick} />
                 </div>
