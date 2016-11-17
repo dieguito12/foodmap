@@ -31,6 +31,22 @@ class RestContainer extends Component{
         email: '',
     }
 
+    componentWillReceiveProps(nextProp) {
+        var user = Auth.loggedUser();
+        if (user != null) {
+            $.ajaxSetup({
+                headers: { 'token': user['auth_token'] }
+            });
+        }
+        $.ajax({
+            type: 'GET',
+            url: "http://159.203.191.142:8080/restaurantDetail/"+ nextProp.restId,
+            dataType: 'json',
+            success: this.fetchData,
+            error: this.handleError
+        });
+    }
+
     componentWillMount() {
         var user = Auth.loggedUser();
         if (user != null) {
@@ -40,7 +56,7 @@ class RestContainer extends Component{
         }
         $.ajax({
             type: 'GET',
-            url: "http://159.203.191.142:8080/restaurantDetail/1",
+            url: "http://159.203.191.142:8080/restaurantDetail/"+this.props.restId,
             dataType: 'json',
             success: this.fetchData,
             error: this.handleError

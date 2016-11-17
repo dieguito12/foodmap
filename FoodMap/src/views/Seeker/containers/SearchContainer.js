@@ -14,7 +14,11 @@ var baseEndpoint = 'http://159.203.191.142:8080/';
 
 class SearchContainer extends Component {
 
-    state = {}
+    state = {
+        categories: null,
+        restaurants: null
+    }
+
     componentWillMount() {
         var user = Auth.loggedUser();
         if (user != null) {
@@ -29,10 +33,27 @@ class SearchContainer extends Component {
             success: this.fetchData,
             error: this.handleError
         });
+        var Action = 'restaurants/0/10';
+        var user = Auth.loggedUser();
+        if (user != null) {
+            $.ajaxSetup({
+                headers: { 'token': user['auth_token'] }
+            });
+        }
+        $.ajax({
+            type: "GET",
+            url: baseEndpoint + Action,
+            success: this.handleSubmitSuccess,
+            error: this.handleSubmitFailure,
+            dataType: 'json',
+        });
     }
 
     fetchData = (result) =>{
-        this.setState(result);
+        var newState = {
+            categories: result
+        };
+        this.setState(newState);
     }
     handleError = (error) => {
         if (error['status'] === 403) {
@@ -40,7 +61,7 @@ class SearchContainer extends Component {
         }
     }
     handleOnSubmit = (e) => {
-        var Action = 'restaurantDetail/1';
+        var Action = 'restaurants/0/2';
         var postData = {
             searchString: document.getElementById("search").value
         };
@@ -62,20 +83,22 @@ class SearchContainer extends Component {
     }
 
     handleSubmitSuccess = (response) => {
-        this.setState(response);
-        console.log(this.state);
+        var newState = {
+            restaurants: response
+        };
+        this.setState(newState);
     }
 
     handleSubmitFailure = (error) => {
         alert("Error logging in: " + error['statusText']);
     }
     render() {
-        var rowArray = $.map(this.state, function(value, index){
+        var rowArray = $.map(this.state.categories, function(value, index){
            return [value.category];
         });
         var categoryRest = rowArray.map(function(searchs) {
         return (
-            <li>{searchs}</li>
+            <li key={searchs.toString()}>{searchs}</li>
             );
         });
         return(
@@ -95,14 +118,14 @@ class SearchContainer extends Component {
                         <form style={formStyle} onSubmit={this.handleOnSubmit}>
                             <div className="input-field">
                                 <input id="search" type="search"/>
-                                <label for="search"><i className="material-icons">search</i></label>
+                                <label><i className="material-icons">search</i></label>
                                 <i className="material-icons">close</i>
                             </div>
                         </form>
                     </div>
                 </nav>
                 <div className="row">
-                    <SearchRow search={this.state} />
+                    <SearchRow search={this.state.restaurants} onClick={this.props.onRestaurantClick} />
                 </div>
             </div>
 

@@ -12,12 +12,12 @@ class RestDetail extends Component {
     render() {
         return (
             <div>
-            <p><RestDetailDescription descr={this.props.description} /></p>
-            <p><RestDetailRating  rat={this.props.rating}/></p>
-            <p><RestDetailAddress Add={this.props.address}/></p>
-            <p><RestDetailPhoneNumber Phone={this.props.phone}/></p>
-            <p><RestDetailEmail Email={this.props.email}/></p>
-            <p><RestDetailSchedule Schedule={this.props.resschedule}/></p>
+                <RestDetailDescription descr={this.props.description} />
+                <RestDetailRating  rat={this.props.rating}/>
+                <RestDetailAddress Add={this.props.address}/>
+                <RestDetailPhoneNumber Phone={this.props.phone}/>
+                <p><RestDetailEmail Email={this.props.email}/></p>
+                <RestDetailSchedule Schedule={this.props.resschedule}/>
             </div>
         );
     }

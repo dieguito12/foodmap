@@ -51,7 +51,6 @@ class LoginFormContainer extends Component {
       password: this.state.password
     };
     if (this.state.currentAction == 'register' && this.state.password !== this.state.passwordConfirmation) {
-      console.log(this.state.passwordConfirmation);
       alert('Password and password confirmation must be the same.');
     }
     else {

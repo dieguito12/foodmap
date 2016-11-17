@@ -9,7 +9,7 @@ class RestDetailRating extends Component {
                     <strong>Rating</strong>
                 </div>
                 <div className="col-lg-9">
-                <Rating readonly={true} initialRate={this.props.rat}/>
+                <Rating readonly={true} initialRate={Number(this.props.rat)}/>
                 </div>
             </div>
             );
