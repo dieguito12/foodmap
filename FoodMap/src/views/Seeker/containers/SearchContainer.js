@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './SearchContainer.css';
 import SearchRow from  '../components/SearchRow';
 import Auth from '../../../auth/Auth';
-import { WithContext as ReactTags } from 'react-tag-input';
 import $ from 'jquery';
 
 var formStyle = {
