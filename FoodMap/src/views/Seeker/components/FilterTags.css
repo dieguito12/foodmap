@@ -1,0 +1,29 @@
+#tag-bar {
+    background-color: #D3D3D3;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#category-dropdown {
+    text-decoration: none;
+}
+
+#dropdown-icons {
+    line-height: 220%;
+    margin-left: 0px;
+    width: 45%;
+}
+
+#search-bar-form {
+    margin: 0px;
+}
+
+#category-label {
+    padding-left: 1%;
+    padding-right: 0px;
+}
+
+#search-bar-input {
+    padding: 0px;
+}
+
