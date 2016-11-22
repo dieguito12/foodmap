@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './SearchContainer.css';
 import SearchRow from  '../components/SearchRow';
+import FilterBy from '../components/FilterBy';
 import Auth from '../../../auth/Auth';
-import { WithContext as ReactTags } from 'react-tag-input';
 import $ from 'jquery';
 
 var formStyle = {
@@ -158,6 +158,9 @@ class SearchContainer extends Component {
                 <nav id="search-bar" className="row">
                     <div ref="chips" className="chips chips-initial" style={{height: "70px"}}></div>
                 </nav>
+                <div className="row">
+                    <FilterBy />
+                </div>
                 <div className="row">
                     <SearchRow search={this.state.restaurants} onClick={this.props.onRestaurantClick} />
                 </div>
