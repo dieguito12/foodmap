@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 var resultStyle = {
     overflowY: "auto",
-    height: "600px"
+    maxHeight: "800px"
 }
 
 var hrStyle = {
@@ -64,7 +64,7 @@ class SearchRow extends Component {
             );
         });
         return (
-            <div id="fontTest" onClick={this.handleOnClick} className="row" style={resultStyle}>
+            <div id="fontTest" onClick={this.handleOnClick} className="row scrollbar" style={resultStyle}>
                 {commentNodes}
             </div>
         );

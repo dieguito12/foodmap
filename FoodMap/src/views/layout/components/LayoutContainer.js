@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import RestContainer from '../../../views/restaurants/containers/RestContainer';
 import SearchContainer from '../../../views/Seeker/containers/SearchContainer';
 
-
 class LayoutContainer extends Component {
 
     state = {
-        restaurantId: 1
+        restaurantId: 1,
+        restaurants: []
     }
 
     restaurantClickHandler = (response) => {
@@ -16,11 +16,22 @@ class LayoutContainer extends Component {
         this.setState(newState);
     }
 
+    searchHandler = (response) => {
+        var newState = {
+            restaurants: response
+        }
+        this.setState(newState);
+    }
+
     render () {
         return(
                 <div className="row">
-                    <SearchContainer onRestaurantClick={this.restaurantClickHandler} />
-                    <RestContainer restId={this.state.restaurantId} />
+                    <SearchContainer
+                        onSearch={this.searchHandler}
+                        onRestaurantClick={this.restaurantClickHandler} />
+                    <RestContainer
+                        restaurants={this.state.restaurants}
+                        restId={this.state.restaurantId} />
                 </div>
         );
     }

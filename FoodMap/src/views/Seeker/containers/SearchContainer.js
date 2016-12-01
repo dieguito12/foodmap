@@ -70,14 +70,12 @@ class SearchContainer extends Component {
     handleOnSubmit = (e) => {
 
         var Action = 'restaurants/0/15';
-        console.log(chipsIds.length);
         if (chipsIds.length != 0){
             Action = 'restByType/'+chipsIds.join('-')+'/0/15';
         }
         var postData = {
             searchString: document.getElementById("search").value
         };
-        console.log(postData);
         if (postData['searchString'] != '') {
             Action = 'searchRestaurant/'+postData['searchString']+'/0/15'
         }
@@ -112,10 +110,22 @@ class SearchContainer extends Component {
         };
         this.setState(newState);
         chipsIds = [];
+        var restaurantsMarkers = [];
+        for (var i=0; i<response.length; i++) {
+            restaurantsMarkers.push({
+                key: response[i].id,
+                title: response[i].resname,
+                lat: response[i].latitude,
+                lng: response[i].longitude,
+            });
+        }
+        this.props.onSearch(restaurantsMarkers);
     }
 
     handleSubmitFailure = (error) => {
         alert("Error logging in: " + error['statusText']);
+        Auth.unsetUser();
+        location.reload();
     }
 
     render() {

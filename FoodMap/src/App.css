@@ -32,3 +32,5 @@ body {
   text-decoration: none;
   background-color: #6498FE;
 }
+
+@import "../node_modules/react-image-gallery/styles/css/image-gallery.css";

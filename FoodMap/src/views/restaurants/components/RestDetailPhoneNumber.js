@@ -8,7 +8,7 @@ class RestDetailPhoneNumber extends Component {
                     <strong>Telefono(s)</strong>
                 </div>
                 <div className="col-lg-9">
-                {this.props.Phone}
+                <a href={"callto: " + this.props.Phone}>{this.props.Phone}</a>
                 </div>
             </div>
             );

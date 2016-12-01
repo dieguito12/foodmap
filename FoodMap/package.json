@@ -15,7 +15,9 @@
     "react-rating": "^0.5.0",
     "react-star-rating": "^1.4.2",
     "react-tabs": "^0.8.0",
-    "react-virtualized": "^8.2.0"
+    "react-virtualized": "^8.2.0",
+    "react-gmaps": "^1.5.0",
+    "react-image-gallery": "^0.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
