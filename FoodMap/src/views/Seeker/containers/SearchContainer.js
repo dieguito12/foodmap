@@ -105,6 +105,7 @@ class SearchContainer extends Component {
         if (response['rows']) {
             response = response['rows'];
         }
+        console.log(response);
         var newState = {
             restaurants: response
         };
@@ -123,9 +124,9 @@ class SearchContainer extends Component {
     }
 
     handleSubmitFailure = (error) => {
-        alert("Error logging in: " + error['statusText']);
-        Auth.unsetUser();
-        location.reload();
+        // alert("Error logging in: " + error['statusText']);
+        // Auth.unsetUser();
+        // location.reload();
     }
 
     render() {

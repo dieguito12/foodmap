@@ -54,7 +54,7 @@ class SearchRow extends Component {
                             <p>{searchs[8]}</p>
                         </div>
                         <div className="col-lg-4">
-                            <img id="imageRest" src="https://pbs.twimg.com/profile_images/501458165867638784/h795n4ks.jpeg" />
+                            <img id="imageRest" src={"http://159.203.191.142:8080/images/restaurants/"+searchs[9]} />
                         </div>
                     </div>
                     <div className="row">

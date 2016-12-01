@@ -35,7 +35,7 @@ class RestTag extends Component {
                 <div className="row">
                     <div className="card white darken-1">
                         <div className="col-lg-5" style={{marginTop: "20px"}}>
-                            <img id="imageRest" src="https://pbs.twimg.com/profile_images/501458165867638784/h795n4ks.jpeg" />
+                            <img id="imageRest" src={"http://159.203.191.142:8080/images/restaurants/"+this.props.restaurant.imageUrl} />
                         </div>
                         <div className="card-content">
                             <span className="card-title">{this.props.restaurant.resname}</span>
