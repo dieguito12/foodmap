@@ -39,6 +39,7 @@ class SearchRow extends Component {
             }
         }
         var commentNodes = resultArray.map(function(searchs) {
+            console.log(searchs);
             function handleOnClick(e) {
                 restId = e.target.parentNode.parentNode.parentNode.childNodes[0].textContent;
                 e.preventDefault();
@@ -48,13 +49,13 @@ class SearchRow extends Component {
                     <div className="row" style={restaurantTagStyle}>
                         <div className="col-lg-8" id="DataContainer">
                             <p id="restId" hidden>{searchs[0]}</p>
-                            <a onClick={handleOnClick} href="#"><h5><strong>{searchs[2]}</strong></h5></a>
-                            <Rating id="rating" readonly={true} initialRate={searchs[6]}/>
-                            <p>{searchs[3]}</p>
-                            <p>{searchs[8]}</p>
+                            <a onClick={handleOnClick} href="#"><h5><strong>{searchs[3]}</strong></h5></a>
+                            <Rating id="rating" readonly={true} initialRate={searchs[7]}/>
+                            <p>{searchs[4]}</p>
+                            <p>{searchs[9]}</p>
                         </div>
                         <div className="col-lg-4">
-                            <img id="imageRest" src={"http://159.203.191.142:8080/images/restaurants/"+searchs[9]} />
+                            <img id="imageRest" src={"http://159.203.191.142:8080/images/restaurants/"+searchs[2]} />
                         </div>
                     </div>
                     <div className="row">
