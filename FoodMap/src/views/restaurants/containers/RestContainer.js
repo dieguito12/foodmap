@@ -5,6 +5,7 @@ import  RestDetail from '../components/RestDetail';
 import  RestMap from '../components/RestMap';
 import  RestGallery from '../components/RestGallery';
 import  RestTag from '../components/RestTag';
+import  RestMenu from '../components/RestMenu';
 import Auth from '../../../auth/Auth';
 import $ from 'jquery';
 
@@ -28,6 +29,7 @@ var DataStyle = {
 
 class RestContainer extends Component{
     state = {
+        id : '',
         description: '',
         rating: '',
         address: '',
@@ -38,6 +40,8 @@ class RestContainer extends Component{
 
     componentWillReceiveProps(nextProp) {
         var user = Auth.loggedUser();
+        var restId = { id: nextProp.restId};
+        this.setState(restId);
         if (user != null) {
             $.ajaxSetup({
                 headers: { 'token': user['auth_token'] }
@@ -90,10 +94,10 @@ class RestContainer extends Component{
                     resschedule={this.state.resschedule} />
             </TabPanel>
             <TabPanel style={DataStyle}>
-
+                <RestMenu restId={this.state.id}/>
             </TabPanel>
             <TabPanel style={DataStyle}>
-                <RestGallery />
+                <RestGallery restId={this.state.id}/>
             </TabPanel>
       </Tabs>
     </div>

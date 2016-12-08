@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ImageGallery from 'react-image-gallery';
+import Auth from '../../../auth/Auth';
+import $ from 'jquery';
 
 const style = {
     maxWidth: "100%",
@@ -13,29 +15,53 @@ class RestGallery extends Component {
         console.log('Image loaded ', event.target)
     }
 
-    render() {
+    state = {
+    }
 
-        const images = [
+    componentWillMount() {
+        var user = Auth.loggedUser();
+        if (user != null) {
+            $.ajaxSetup({
+                headers: { 'token': user['auth_token'] }
+            });
+        }
+        $.ajax({
+            type: 'GET',
+            url: "http://159.203.191.142:8080/imagesByIdRestaurant/"+ this.props.restId,
+            dataType: 'json',
+            success: this.fetchData,
+            error: this.handleError
+        });
+    }
+    fetchData = (result) =>{
+       this.setState(result);
+       console.log(this.state);
+    }
+    handleError = (error) => {
+        if (error['status'] === 403) {
+            Auth.unsetUser();
+        }
+    }
+
+    render() {
+        var imagesRest = [];
+        for (var i = 0 ; i < 10; i++) {
+            if(this.state.hasOwnProperty("gallery_" + i))
             {
-                original: 'http://lorempixel.com/1000/600/nature/1/',
-                thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-            },
-            {
-                original: 'http://lorempixel.com/1000/600/nature/2/',
-                thumbnail: 'http://lorempixel.com/250/150/nature/2/'
-            },
-            {
-                original: 'http://lorempixel.com/1000/600/nature/3/',
-                thumbnail: 'http://lorempixel.com/250/150/nature/3/'
+                imagesRest.push({ original: 'http://159.203.191.142:8080/images/restaurants/'+this.state["gallery_"+i],
+                    thumbnail: 'http://159.203.191.142:8080/images/restaurants/'+this.state["gallery_"+i]});
+                console.log(imagesRest);
             }
-        ]
+        }
 
     return (
+        <div>
+        {console.log(this.state)}
         <ImageGallery
             ref={i => this._imageGallery = i}
-            items={images}
-            slideInterval={5000}
-            onImageLoad={this.handleImageLoad}/>
+            items={imagesRest}
+            slideInterval={5000} />
+        </div>
         );
     }
 }
