@@ -1,20 +1,11 @@
 FoodMapApp
 
-Es una aplicación web hecha en ReactJs.
+Web app made in ReactJs that consumes from a NodeJs API of restaurants information
 
-Hace uso de diferentes tecnologias:
+It uses:
 
 - ReactJs
 - Google Maps
 - Bootstrap
 - Materialize CSS
 - JQuery
-- Interacción con un servidor en NodeJs
-
-El proyecto está actualmente hosteado en http://159.203.191.141:3000/
-
-Algunos usuarios:
-
-- franci // bello
-- diego // bello
-- hector // bello
